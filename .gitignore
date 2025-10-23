@@ -1,0 +1,21 @@
+# Dependencies
+vendor/
+/node_modules/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# XAMPP
+xampp/
+*.sql
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
