@@ -39,7 +39,7 @@
 <body>
     <div class="container">
     <div class="form-box <?php echo isActiveForm('login', $activeForm); ?>" id="login-form">
-            <form action="login_register.php" method="post">
+            <form action="login_register_backend.php" method="post">
                 <h2>Login</h2>
                 <?php echo showError($errors['login']); ?>
 
@@ -53,7 +53,7 @@
         </div>
 
     <div class="form-box <?php echo isActiveForm('register', $activeForm); ?>" id="register-form">
-            <form action="login_register.php" method="post">
+            <form action="login_register_backend.php" method="post">
                 <h2>Register</h2>
                 <?php echo showError($errors['register']); ?>
 
