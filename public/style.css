@@ -1,37 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", serif;
 }
 
-body{
+body {
     min-height: 100vh;
     color: #333;
 }
 
 /* Body style for login/register pages only */
-body.auth-page{
+body.auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    padding: 20px 0;
 }
 
 /* Body style for landing page */
-body.landing-page{
+body.landing-page {
     background: #fff;
     display: block;
 }
 
 /*login_register - Mxolisi*/
-.container{
+.container {
     margin: 0 15px;
+    width: 100%;
+    max-width: 500px;
 }
 
-.form-box{
+.form-box {
     width: 100%;
     padding: 20px;
     max-width: 450px;
@@ -41,18 +44,18 @@ body.landing-page{
     display: none;
 }
 
-.form-box.active{
+.form-box.active {
     display: block;
 }
 
-h2{
+h2 {
     font-size: 34px;
     text-align: center;
     margin-bottom: 20px;
 }
 
 input,
-select{
+select {
     width: 100%;
     padding: 20px;
     background: #eee;
@@ -64,7 +67,7 @@ select{
     margin-bottom: 20px;
 }
 
-button{
+button {
     width: 100%;
     padding: 12px;
     background: #7494ec;
@@ -78,26 +81,26 @@ button{
     transition: 0.5s;
 }
 
-button:hover{
+button:hover {
     background: #6884d3;
 }
 
-p{
+p {
     font-size: 14.5px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-p a{
+p a {
     text-decoration: none;
     color: #577fee;
 }
 
-p a:hover{
+p a:hover {
     text-decoration: underline;
 }
 
-.error-message{
+.error-message {
     background: #ffdddd;
     color: #d8000c;
     font-size: 16px;
@@ -107,7 +110,7 @@ p a:hover{
     border-radius: 6px;
 }
 
-.success-message{
+.success-message {
     background: #ddffdd;
     color: #006400;
     font-size: 16px;
@@ -115,6 +118,117 @@ p a:hover{
     text-align: center;
     margin-bottom: 20px;
     border-radius: 6px;
+}
+
+/* ========== ANONYMOUS REPORTING & INFO SECTIONS ========== */
+
+.anonymous-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+}
+
+.anonymous-content h3 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.anonymous-content p {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.anonymous-btn {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.anonymous-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background: #f8f9fa;
+}
+
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    width: 100%;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    padding: 0 15px;
+    color: #666;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 100%;
+}
+
+.info-card h3 {
+    color: #667eea;
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    padding: 10px 0;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+}
+
+.benefits-list li:last-child {
+    border-bottom: none;
 }
 
 /* ========== LANDING PAGE STYLES ========== */
@@ -139,7 +253,7 @@ p a:hover{
     font-size: 3em;
     margin-bottom: 20px;
     font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     color: white;
 }
 
@@ -161,14 +275,14 @@ p a:hover{
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: auto;
     margin: 0;
 }
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     background: #f8f9fa;
 }
 
@@ -200,13 +314,13 @@ p a:hover{
     background: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
@@ -245,7 +359,7 @@ p a:hover{
     background: white;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .info-content ul {
@@ -306,7 +420,25 @@ footer p {
     .info-section h2 {
         font-size: 2em;
     }
-    
+
     .info-content {
         padding: 20px;
     }
+
+    .anonymous-content h3 {
+        font-size: 24px;
+    }
+
+    .anonymous-content p {
+        font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+        width: 35%;
+    }
+    
+    .info-card {
+        padding: 20px;
+    }
+}

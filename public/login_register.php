@@ -37,15 +37,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>index</title>
+    <title>Login & Register - Crime Report System</title>
 </head>
-<body>
+<body class="auth-page">
     <div class="container">
-    <div class="form-box <?php echo isActiveForm('login', $activeForm); ?>" id="login-form">
+        <!-- Anonymous Reporting Banner -->
+        <div class="anonymous-banner">
+            <div class="anonymous-content">
+                <h3>🔒 Report Anonymously</h3>
+                <p>No account needed. Report crimes instantly without registration.</p>
+                <a href="anonymous_report.php" class="anonymous-btn">Submit Anonymous Report</a>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-box <?php echo isActiveForm('login', $activeForm); ?>" id="login-form">
             <form action="login_register_backend.php" method="post">
                 <h2>Login</h2>
                 <?php echo showError($errors['login']); ?>
-
                 <?php echo showSuccess($success['login']); ?>
 
                 <input type="text" name="username" placeholder="Enter username" required>
@@ -55,11 +64,11 @@
             </form>
         </div>
 
-    <div class="form-box <?php echo isActiveForm('register', $activeForm); ?>" id="register-form">
+        <!-- Register Form -->
+        <div class="form-box <?php echo isActiveForm('register', $activeForm); ?>" id="register-form">
             <form action="login_register_backend.php" method="post">
                 <h2>Register</h2>
                 <?php echo showError($errors['register']); ?>
-
                 <?php echo showSuccess($success['register']); ?>
 
                 <input type="text" name="username" placeholder="Choose a username" required>
@@ -73,6 +82,23 @@
                 <button type="submit" name="register">Register</button>
                 <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
             </form>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <!-- Why Register Section -->
+        <div class="info-card">
+            <h3>Why Register an Account?</h3>
+            <ul class="benefits-list">
+                <li>✓ Track your report status</li>
+                <li>✓ Receive updates on investigations</li>
+                <li>✓ Submit multiple reports</li>
+                <li>✓ Access your report history</li>
+                <li>✓ Communicate with officers securely</li>
+            </ul>
         </div>
     </div>
     <script src="script.js"></script>
