@@ -1,13 +1,23 @@
 <?php
-$host =  "localhost";
-$username = "root";
-$password = "";
-$dbname = "crimeprojectdb";
+$host = 'localhost';
+$db   = 'anonymous_crime_db';   
+$user = 'root';               
+$pass = '';                    
 
-$conn = new mysqli($host, $username, $password, $dbname);
+$charset = 'utf8mb4';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // throws errors
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    error_log('DB connection error: ' . $e->getMessage());
+    die('Database connection failed. Please try again later.');
 }
-
 ?>

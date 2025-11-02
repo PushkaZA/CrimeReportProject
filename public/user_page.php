@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['phonenumber'])) {
+if (!isset($_SESSION['username'])) {
     header("Location: login_register.php");
     exit();
 }
@@ -18,7 +18,7 @@ if (!isset($_SESSION['phonenumber'])) {
     <div class="container">
         <h1>Crime Reporting Website</h1>
         <div class="welcome-message">
-            <p>Welcome, User: <?php echo htmlspecialchars($_SESSION['phonenumber']); ?></p>
+            <p>Welcome, User: <?php echo htmlspecialchars($_SESSION['username']); ?></p>
         </div>
         <!-- Add your user dashboard content here -->
     </div>

@@ -10,7 +10,6 @@ vendor/
 
 # XAMPP
 xampp/
-*.sql
 
 # OS
 .DS_Store
