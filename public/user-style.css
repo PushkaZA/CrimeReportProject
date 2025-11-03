@@ -280,3 +280,304 @@ tr:hover {
         font-size: 12px;
     }
 }
+
+.success-info {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.success-info > p {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.tracking-info {
+  background: #f5fff7;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid #6a6cb8;
+}
+
+.tracking-info h3 {
+  color: #6a6cb8;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tracking-number,
+.access-code {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2e577d;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  border: 2px solid #6a6cb8;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+}
+
+.warning-box {
+  background: #fff3cd;
+  border-left: 4px solid #f57f17;
+  padding: 20px;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.warning-box p {
+  color: #856404;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.warning-box i {
+  color: #f57f17;
+}
+
+.warning-box ul {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+  color: #856404;
+}
+
+.warning-box li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Button group for success page */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.button-group .secondary-button,
+.button-group .primary-button {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.button-group .secondary-button {
+  background-color: #86bbda;
+  color: white;
+}
+
+.button-group .secondary-button:hover {
+  background-color: #7b8abb;
+  transform: translateY(-2px);
+}
+
+.button-group .primary-button {
+  background-color: #7388b6;
+  color: white;
+}
+
+.button-group .primary-button:hover {
+  background-color: #3757b1;
+  transform: translateY(-2px);
+}
+
+/* Print styles */
+@media print {
+  body {
+      margin: 0;
+      padding: 20px;
+  }
+  
+  .button-group {
+      display: none;
+  }
+  
+  .warning-box {
+      border: 2px solid #f57f17;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .button-group {
+      flex-direction: column;
+  }
+  
+  .button-group .primary-button,
+  .button-group .secondary-button {
+      width: 100%;
+      min-width: auto;
+  }
+  
+  .tracking-number,
+  .access-code {
+      font-size: 16px;
+  }
+}
+
+
+/* ============================================
+ ADD TO style.css for anonymous_report.php
+ ============================================ */
+
+/* Form links styling for anonymous report page */
+.form-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-links p {
+  margin: 12px 0;
+}
+
+.form-links a {
+  color: #6a6cb8;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.form-links a:hover {
+  background-color: #e8eaf6;
+  color: #3757b1;
+}
+
+.form-links a i {
+  font-size: 14px;
+}
+
+/* Anonymous banner styling */
+.anonymous-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.anonymous-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.anonymous-content p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+/* Divider styling */
+.divider {
+  text-align: center;
+  margin: 40px 0 30px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ddd;
+  z-index: 1;
+}
+
+.divider span {
+  background: white;
+  padding: 0 20px;
+  color: #666;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+/* Info card styling */
+.info-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  border-left: 4px solid #6a6cb8;
+  margin-top: 20px;
+}
+
+.info-card h3 {
+  color: #6a6cb8;
+  margin: 0 0 15px 0;
+  font-size: 20px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits-list li {
+  padding: 10px 0;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Wide container for anonymous report page */
+.container.wide {
+  max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  .anonymous-banner {
+      padding: 20px;
+  }
+  
+  .anonymous-content h3 {
+      font-size: 20px;
+  }
+  
+  .anonymous-content p {
+      font-size: 14px;
+  }
+  
+  .info-card {
+      padding: 20px;
+  }
+  
+  .benefits-list li {
+      font-size: 15px;
+  }
+}

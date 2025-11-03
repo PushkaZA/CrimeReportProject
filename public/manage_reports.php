@@ -20,28 +20,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Process status update
     if (isset($_POST['action']) && $_POST['action'] === 'update_status' && isset($_POST['report_id']) && isset($_POST['status'])) {
         $report_id = filter_input(INPUT_POST, 'report_id', FILTER_SANITIZE_NUMBER_INT);
-        $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_STRING);
-        $admin_note = filter_input(INPUT_POST, 'admin_note', FILTER_SANITIZE_STRING);
+        $status = $_POST['status']; // Don't use FILTER_SANITIZE_STRING (deprecated)
+        $admin_note = $_POST['admin_note'] ?? '';
+        
+        // Validate status
+        $valid_statuses = ['pending', 'in_review', 'closed'];
+        if (!in_array($status, $valid_statuses)) {
+            $_SESSION['error'] = "Invalid status value.";
+            header("Location: view_report.php?id=" . $report_id);
+            exit();
+        }
         
         try {
             $pdo->beginTransaction();
             
             // Update status
-            $stmt = $pdo->prepare("UPDATE reports SET status = ? WHERE id = ?");
+            $stmt = $pdo->prepare("UPDATE reports SET status = ?, updated_at = NOW() WHERE id = ?");
             $stmt->execute([$status, $report_id]);
 
-            // Add admin note if provided
-            if (!empty($admin_note)) {
-                $stmt = $pdo->prepare("INSERT INTO report_notes (report_id, admin_id, note, created_at) VALUES (?, ?, ?, NOW())");
-                $stmt->execute([$report_id, $_SESSION['user_id'], $admin_note]);
+            // Add admin note if provided - FIXED: Use 'messages' table instead of 'report_notes'
+            if (!empty(trim($admin_note))) {
+                $stmt = $pdo->prepare("
+                    INSERT INTO messages (report_id, user_id, message_text, is_from_reporter, created_at) 
+                    VALUES (?, ?, ?, 0, NOW())
+                ");
+                $stmt->execute([$report_id, $_SESSION['user_id'], trim($admin_note)]);
             }
 
             $pdo->commit();
-            $success = "Report status updated successfully.";
+            $_SESSION['success'] = "Report status updated successfully.";
+            
+            // Redirect back to view_report.php if came from there, otherwise stay on manage_reports
+            if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'view_report.php') !== false) {
+                header("Location: view_report.php?id=" . $report_id);
+            } else {
+                header("Location: manage_reports.php");
+            }
+            exit();
+            
         } catch (PDOException $e) {
             $pdo->rollBack();
             error_log('Error updating report status: ' . $e->getMessage());
-            $error = "Failed to update report status.";
+            $_SESSION['error'] = "Failed to update report status: " . $e->getMessage();
+            
+            // Redirect based on referer
+            if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'view_report.php') !== false) {
+                header("Location: view_report.php?id=" . $report_id);
+            } else {
+                header("Location: manage_reports.php");
+            }
+            exit();
         }
     }
 
@@ -52,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo->beginTransaction();
 
-            // Delete associated files first
-            $stmt = $pdo->prepare("SELECT file_path FROM report_files WHERE report_id = ?");
+            // Delete associated media files first
+            $stmt = $pdo->prepare("SELECT file_path FROM media WHERE report_id = ?");
             $stmt->execute([$report_id]);
             $files = $stmt->fetchAll(PDO::FETCH_COLUMN);
             
@@ -63,12 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            // Delete report files records
-            $stmt = $pdo->prepare("DELETE FROM report_files WHERE report_id = ?");
+            // Delete media records
+            $stmt = $pdo->prepare("DELETE FROM media WHERE report_id = ?");
             $stmt->execute([$report_id]);
 
-            // Delete report notes
-            $stmt = $pdo->prepare("DELETE FROM report_notes WHERE report_id = ?");
+            // Delete messages
+            $stmt = $pdo->prepare("DELETE FROM messages WHERE report_id = ?");
             $stmt->execute([$report_id]);
 
             // Delete the report
@@ -76,11 +104,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$report_id]);
 
             $pdo->commit();
-            $success = "Report deleted successfully.";
+            $_SESSION['success'] = "Report deleted successfully.";
+            header("Location: manage_reports.php");
+            exit();
+            
         } catch (PDOException $e) {
             $pdo->rollBack();
             error_log('Error deleting report: ' . $e->getMessage());
-            $error = "Failed to delete report.";
+            $_SESSION['error'] = "Failed to delete report: " . $e->getMessage();
+            header("Location: manage_reports.php");
+            exit();
         }
     }
 }

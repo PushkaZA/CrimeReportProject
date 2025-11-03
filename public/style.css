@@ -881,6 +881,46 @@ td .btn-small {
 .btn-secondary {
     background: #6c757d;
 }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    line-height: 1.4;
+}
+
+.btn i {
+    font-size: 1em;
+}
+
+/* Secondary Button (Back Button) */
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Primary Button (for consistency) */
+.btn {
+    background: #7494ec;
+    color: white;
+}
+
+.btn:hover {
+    background: #6884d3;
+    transform: translateY(-1px);
+}
 
 /* view_report.php styles (top) */
 .report-details {
